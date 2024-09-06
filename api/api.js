@@ -7,9 +7,7 @@ import cors from 'cors';
 app.use(cors());
 
 app.get('/api/numbers', (req, res) => {
-  const numbers = Array.from({ length: 4
-   }, (_, i) => i + 1);
-  res.json(numbers);
+  
 });
 
 app.listen(port, () => {

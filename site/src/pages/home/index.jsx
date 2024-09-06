@@ -4,19 +4,26 @@ import jsPDF from 'jspdf';
 
 function App() {
   const [numbers, setNumbers] = useState([]);
+  const [qrPdfs, setQrPdfs] = useState(1000);
   const qrRefs = useRef([]);
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(0);
+  //const [ quantidade, setQuantidade] = useState(end)
+
 
   useEffect(() => {
-    fetch('http://localhost:5010/api/numbers')
-      .then((response) => response.json())
-      .then((data) => setNumbers(data))
-      .catch((error) => console.error('Erro ao buscar números:', error));
-  }, []);
+    let nums = [];
+    for (let index = start; index <= end; index++) {
+      nums.push(index);
+    }
+    setNumbers(nums);
+  }, [start, end]);
+
 
   const handleGeneratePDFs = async () => {
     const maxPerPage = 30; 
-    const qrCodeSize = 50; 
-    const margin = 20; 
+    const qrCodeSize = 40; 
+    const margin = 10;  
     const textMargin = 10; 
 
     const createPDF = (startIndex, endIndex, fileName) => {
@@ -77,7 +84,28 @@ function App() {
   return (
     <div className="App">
       <h1>Gerador de QR Codes</h1>
+      <div>
+        <label>
+           Inicio:
+           <input type="number" value={start} onChange={e => setStart(e.target.value)}/>
+        </label>
+
+        <label>
+          fim:
+          <input type="number" value={end} onChange={e => setEnd(e.target.value)} />
+        </label>
+
+        
+      </div>
+
+      <div>
+        <label>
+          <input type="number" value={qrPdfs} onChange={e => setQrPdfs(numbers(e.target.value))} />
+        </label>
+      </div>
+
       <button onClick={handleGeneratePDFs}>Gerar PDFs</button>
+
       <div>
         {numbers.map((number, index) => (
           <div key={index} ref={el => (qrRefs.current[index] = el)}>
