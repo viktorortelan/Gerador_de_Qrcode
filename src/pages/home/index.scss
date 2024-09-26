@@ -1,29 +1,81 @@
-.pagina-home {
-    height: 100vh;
-    gap: 20px;
+// Variáveis de cores para fácil manutenção e ajustes futuros
+$primary-color: #4CAF50;
+$secondary-color: #333;
+$background-color: #f4f4f4;
+$input-border-color: #ccc;
+$button-color: #4CAF50;
+$button-hover-color: darken($button-color, 10%);
+$qr-border-color: #ddd;
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $background-color;
+  font-family: Arial, sans-serif;
+
+  h1 {
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+
+  // Container para os inputs de número
+  div {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: $secondary-color;
+
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid $input-border-color;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  // Botão de gerar PDFs
+  button {
+    background-color: $button-color;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $button-hover-color;
+    }
+  }
+
+  // Container para os QR Codes
+  .qr-code-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    
-    h1{
-        font: 500 30px poppins;
-        color: #3131ff;
+    margin-top: 20px;
+
+    // Cada QR Code
+    div {
+      padding: 10px;
+      border: 1px solid $qr-border-color;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .section{
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-
-        .card{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            h1{
-                
-            }
-        }
+    canvas {
+      margin: auto;
     }
+  }
 }

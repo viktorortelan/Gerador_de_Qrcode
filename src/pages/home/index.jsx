@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import './index.scss';
 import { QRCodeCanvas } from 'qrcode.react';
 import jsPDF from 'jspdf';
 
